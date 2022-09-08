@@ -9,9 +9,36 @@
 import SwiftUI
 
 struct ContentView: View {
+    @State private var counter: Int = 0
+    
     var body: some View {
-        Text("Hello, world!")
-            .padding()
+        VStack (spacing: 20) {
+            Text("\(counter)")
+                .font(.largeTitle)
+                .padding()
+            
+            Button("Tap me!") {
+                counter += 1
+            }
+            
+            Button(action: superTap) {
+                HStack {
+                    Image(systemName: "checkmark.circle")
+                    Text("Super tap!")
+                }
+            }
+            
+            Image(systemName: "trash")
+                .font(.largeTitle)
+                .foregroundColor(.red)
+                .onTapGesture {
+                    counter = 0
+                }
+        }
+    }
+    
+    func superTap() {
+        counter += 2
     }
 }
 
